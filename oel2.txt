@@ -1,0 +1,42 @@
+def word_pattern(pattern, s):
+    # Split the string 's' into a list of words
+    words = s.split()
+
+    # If the number of words doesn't match the length of the pattern, it's an automatic no
+    if len(pattern) != len(words):
+        return False
+
+    # Create two dictionaries:
+    # 1. One to track the relationship from pattern letters to words
+    # 2. Another to track the relationship from words to pattern letters
+    pattern_to_word = {}
+    word_to_pattern = {}
+
+    # Go through each letter in the pattern and each word in the string
+name:wasmiya fatima
+23-ai-15 (A1)    
+
+               "EVEN"
+
+for p, w in zip(pattern, words):
+        # If we've seen this pattern letter before, check if it maps to the same word
+        if p in pattern_to_word:
+            if pattern_to_word[p] != w:
+                return False  # A mismatch means it can't match the pattern
+        else:
+            pattern_to_word[p] = w  # Otherwise, create a new mapping for this letter
+
+        # Similarly, check if the word has been assigned a pattern letter
+        if w in word_to_pattern:
+            if word_to_pattern[w] != p:
+                return False  # If the word maps to a different pattern letter, it's not a match
+        else:
+            word_to_pattern[w] = p  # Otherwise, create a new mapping for this word
+
+    # If we reach here without mismatches, the pattern and string match perfectly
+    return True
+
+# Example usage
+pattern = "abba"
+s = "dog cat cat dog"
+print(word_pattern(pattern, s))  # Output: True
